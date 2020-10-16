@@ -21,12 +21,9 @@
   </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.select :status, Task::STATUS_OPTIONS %>
   </div>
-  <div class="field">
-    <%= f.label :project %><br />
-    <%= f.text_field :project %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
