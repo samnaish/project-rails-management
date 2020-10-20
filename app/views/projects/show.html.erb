@@ -34,12 +34,17 @@
     </div>
 
     <h4>Tasks</h4>
+    <ul id="tasks-list">
     <% @project.tasks.each do |task| %>
       <% if task.persisted? %>
+      <li>
         <div class="card mb-3">
           <div class="card-body">
             <div class="d-flex justify-content-between">
-              <span class="badge badge-<%= task.badge_colour %> mb-3"><%= task.status %></span>
+              <div class="task-status">
+                <i class="fas fa-grip-vertical grip text-secondary mr-2"></i>
+                <span class="badge badge-<%= task.badge_colour %> mb-3"><%= task.status %></span>
+              </div>
               <div>
                 <%= link_to 'Edit', edit_project_task_path(task.project, task), class: 'btn btn-light btn-sm' %>
                 <%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark btn-sm' %>
@@ -51,9 +56,10 @@
             <p><%= task.description %></p>
           </div>
         </div>
+      </li>
       <% end %>
     <% end %>
-    
+    </ul>
   </div>
 </div>
 
