@@ -24,3 +24,4 @@ document.addEventListener('turbolinks:load', () => {
         animation: 150
     })
 })
+import "controllers"

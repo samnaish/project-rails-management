@@ -46,6 +46,21 @@
                 <span class="badge badge-<%= task.badge_colour %> mb-3"><%= task.status %></span>
               </div>
               <div>
+                <div class="dropdown float-left">
+                  <button class="btn btn-sm mr-1 btn-outline-<%= task.badge_colour %> dropdown-toggle" type="buttton" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                    <%= task.readable_status %>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <%= Task::STATUS_OPTIONS.each do |status| %>
+                      <a class="dropdown-item" href="#" 
+                      data-reflex="click->StatusReflex#change" 
+                      data-id="<%= task.id %>" 
+                      data-status="<%= status[1] %>">
+                        <%= status[0] %>
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
                 <%= link_to 'Edit', edit_project_task_path(task.project, task), class: 'btn btn-light btn-sm' %>
                 <%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark btn-sm' %>
               </div>
