@@ -4,17 +4,16 @@ import ApplicationController from './application_controller'
  * Learn more at: https://docs.stimulusreflex.com
  */
 export default class extends ApplicationController {
-  /*
-   * Regular Stimulus lifecycle methods
-   * Learn more at: https://stimulusjs.org/reference/lifecycle-callbacks
-   *
-   * If you intend to use this controller as a regular stimulus controller as well,
-   * make sure any Stimulus lifecycle methods overridden in ApplicationController call super.
-   *
-   * Important:
-   * By default, StimulusReflex overrides the -connect- method so make sure you
-   * call super if you intend to do anything else when this controller connects.
-  */
+
+  sort(event) {
+    let element = document.getElementById('tasks-list')
+    let task_elements = document.getElementsByClassName('task-item')
+    let tasks = Array.from(task_elements).map((task, index) => {
+      return { id: task.dataset.taskId, position: (index + 1) }
+    })
+    element.dataset.tasks = JSON.stringify(tasks)
+    this.stimulate('TasksReflex#sort', element)
+  }
 
   connect () {
     super.connect()
