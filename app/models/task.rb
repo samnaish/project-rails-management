@@ -9,7 +9,6 @@ class Task < ApplicationRecord
     ['Complete', 'complete']
   ]
 
-
   def badge_colour
     case status
     when 'not-started'
@@ -43,6 +42,5 @@ class Task < ApplicationRecord
   def not_started?
     status == 'not-started'
   end
-  
 
 end
